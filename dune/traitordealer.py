@@ -85,7 +85,7 @@ class DuneTraitorDealer:
             color=0xFF0000,
         )
         for fact, player in faction_player:
-            embed.add_field(name=fact, value=player.display_name)
+            embed.add_field(name=fact, value=str(player))
 
         # Announce the players and their factions
         await ctx.send(embed=embed)
