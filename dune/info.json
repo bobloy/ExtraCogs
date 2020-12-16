@@ -1,0 +1,16 @@
+{
+  "author": [
+    "Bobloy"
+  ],
+  "min_bot_version": "3.4.2",
+  "description": "Cog to assist with the Dune board game",
+  "hidden": true,
+  "install_msg": "Thank you for installing Dune. Get started with `[p]load dune`, then `[p]help Dune`",
+  "short": "Assist with the Dune board game",
+  "end_user_data_statement": "This cog does not store any End User Data",
+  "tags": [
+    "bobloy",
+    "games",
+    "board game"
+  ]
+}
