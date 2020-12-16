@@ -6,7 +6,7 @@ from typing import Tuple
 
 import discord
 from redbot.core.bot import Red
-from redbot.core.commands import commands
+from redbot.core import commands
 
 
 class DuneCard:
