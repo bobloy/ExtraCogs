@@ -4,8 +4,8 @@
 
 Cog Function
 
-| Name |  Description (Click to see full status)
-| --- | --- | --- |
+| Name | Description (Click to see full status)
+| --- | --- |
 | Dune |  <details><summary>Deal traitor cards for the Dune board game</summary>Not much else to comment on</details> |
 
 
