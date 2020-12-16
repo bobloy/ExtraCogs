@@ -11,9 +11,9 @@ log = logging.getLogger("red.fox_v3.dune")
 
 class Dune(commands.Cog):
     """
-    Cog Description
+    Deal traitor cogs for the Dune board game.
 
-    Less important information about the cog
+    This is not designed for public use.
     """
 
     def __init__(self, bot: Red):
@@ -31,6 +31,7 @@ class Dune(commands.Cog):
 
     @commands.command(require_var_positional=True)
     async def dune(self, ctx: commands.Context, *playerlist: discord.Member):
+        """Deal traitor cards to the provided list of players"""
         dealer = DuneTraitorDealer(self.bot)
         await ctx.send(
             f"Dealing cards to these players:\n{' '.join(p.mention for p in playerlist)}"
