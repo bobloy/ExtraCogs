@@ -8,7 +8,8 @@ import discord
 from redbot.core.bot import Red
 from redbot.core import commands
 
-SAND_COLOR = 0xc2b280
+SAND_COLOR = 0xC2B280
+
 
 class DuneCard:
     def __init__(self, faction, strength, name):
@@ -87,7 +88,13 @@ class DuneTraitorDealer:
         for fact, player in faction_player:
             embed.add_field(name=fact, value=str(player), inline=False)
 
-        master_pool = [traitor for faction, traitors in self.factions.items() for traitor in traitors if faction ]
+        # Get the traitors for the factions that are in the game
+        master_pool = [
+            traitor
+            for f_p in faction_player
+            for traitor in self.factions[f_p[1]]
+            if f_p[1] is not None
+        ]
 
         # Announce the players and their factions
         await ctx.send(embed=embed)
@@ -142,7 +149,7 @@ class DuneTraitorDealer:
                     embed.add_field(
                         name=f"The {pool[i].faction} leader, {pool[i].name}",
                         value=f"Strength: {pool[i].strength}",
-                        inline=False
+                        inline=False,
                     )
                     # print("the", pool[i][0], "leader,", pool[i][2])
 
@@ -161,7 +168,7 @@ class DuneTraitorDealer:
                     embed.add_field(
                         name=f"{letter}: The {pool[i].faction} leader, {pool[i].name}",
                         value=f"Strength: {pool[i].strength}",
-                        inline=False
+                        inline=False,
                     )
 
                 await player.send(embed=embed)
