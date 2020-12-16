@@ -33,7 +33,7 @@ class Dune(commands.Cog):
     async def dune(self, ctx: commands.Context, *playerlist: discord.Member):
         """Deal traitor cards to the provided list of players"""
         dealer = DuneTraitorDealer(self.bot)
-        await ctx.maybe_send_embed(
+        await ctx.send(
             f"Dealing cards to these players:\n{' '.join(p.mention for p in playerlist)}"
         )
         await dealer.deal_the_traitors(ctx, *playerlist)
