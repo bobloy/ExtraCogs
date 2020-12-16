@@ -79,6 +79,8 @@ class DuneTraitorDealer:
 
     async def deal_the_traitors(self, ctx: commands.Context, *players: Tuple[discord.Member]):
         # Produces a list of (faction, player) pairs, where player is None if not enough players
+        if len(players) <= 1 or len(players) >= len(self.factions):
+            await ctx.maybe_send_embed("Invalid # of players")
         faction_player = list(itertools.zip_longest(self.turnOrder, players, fillvalue=None))
 
         embed = discord.Embed(
