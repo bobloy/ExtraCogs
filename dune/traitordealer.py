@@ -85,7 +85,7 @@ class DuneTraitorDealer:
             color=SAND_COLOR,
         )
         for fact, player in faction_player:
-            embed.add_field(name=fact, value=str(player))
+            embed.add_field(name=fact, value=str(player), inline=False)
 
         master_pool = [traitor for faction, traitors in self.factions.items() for traitor in traitors if faction ]
 
@@ -142,6 +142,7 @@ class DuneTraitorDealer:
                     embed.add_field(
                         name=f"The {pool[i].faction} leader, {pool[i].name}",
                         value=f"Strength: {pool[i].strength}",
+                        inline=False
                     )
                     # print("the", pool[i][0], "leader,", pool[i][2])
 
@@ -160,6 +161,7 @@ class DuneTraitorDealer:
                     embed.add_field(
                         name=f"{letter}: The {pool[i].faction} leader, {pool[i].name}",
                         value=f"Strength: {pool[i].strength}",
+                        inline=False
                     )
 
                 await player.send(embed=embed)
