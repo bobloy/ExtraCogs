@@ -8,6 +8,7 @@ import discord
 from redbot.core.bot import Red
 from redbot.core import commands
 
+SAND_COLOR = 0xc2b280
 
 class DuneCard:
     def __init__(self, faction, strength, name):
@@ -76,16 +77,17 @@ class DuneTraitorDealer:
         random.shuffle(self.turnOrder)
 
     async def deal_the_traitors(self, ctx: commands.Context, *players: Tuple[discord.Member]):
-        master_pool = [traitor for traitors in self.factions.values() for traitor in traitors]
-
-        faction_player = list(itertools.zip_longest(self.turnOrder, players))
+        # Produces a list of (faction, player) pairs, where player is None if not enough players
+        faction_player = list(itertools.zip_longest(self.turnOrder, players, fillvalue=None))
 
         embed = discord.Embed(
             title=f"Factions have been assigned",
-            color=0xFF0000,
+            color=SAND_COLOR,
         )
         for fact, player in faction_player:
             embed.add_field(name=fact, value=str(player))
+
+        master_pool = [traitor for faction, traitors in self.factions.items() for traitor in traitors if faction ]
 
         # Announce the players and their factions
         await ctx.send(embed=embed)
@@ -100,7 +102,7 @@ class DuneTraitorDealer:
             # sending/receiving messages from this player
             embed = discord.Embed(
                 title=f"Dealing cards to {player}",
-                color=0xFF0000,
+                color=SAND_COLOR,
             )
 
             await ctx.send(embed=embed)
@@ -133,7 +135,7 @@ class DuneTraitorDealer:
                     title=f"Your Traitors",
                     description=f"Harkonnen keep all their traitor cards.\n"
                     f"Take their cards out of the traitor deck in front of your zone and put them in your hand.",
-                    color=0xFF0000,
+                    color=SAND_COLOR,
                 )
                 # for each of the 4 traitors
                 for i in range(4):
@@ -151,7 +153,7 @@ class DuneTraitorDealer:
                 embed = discord.Embed(
                     title=f"Your Traitors choices",
                     description=f"Choose one by responding with the letter (a, b, c, d):\n",
-                    color=0xFF0000,
+                    color=SAND_COLOR,
                 )
                 for i, letter in enumerate("abcd"):
                     # notify player
@@ -187,7 +189,7 @@ class DuneTraitorDealer:
                 embed = discord.Embed(
                     title=f"You have chosen the {choice.faction} leader, {choice.name}",
                     description=f"Take their card out of the traitor deck in front of your zone and put it in your hand.",
-                    color=0xFF0000,
+                    color=SAND_COLOR,
                 )
                 # Confirm response
                 await player.send(embed=embed)
