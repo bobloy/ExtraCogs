@@ -111,7 +111,7 @@ class DuneTraitorDealer:
                 return
             # sending/receiving messages from this player
             embed = discord.Embed(
-                title=f"Dealing cards to {player}",
+                description=f"Dealing cards to {player.display_name} of the {current_faction}",
                 color=SAND_COLOR,
             )
 

@@ -38,4 +38,4 @@ class Dune(commands.Cog):
         )
         await dealer.deal_the_traitors(ctx, *playerlist)
 
-        await ctx.maybe_send_embed("Traitors have been dealt!")
+        await ctx.send("Traitors have been dealt!")
